@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz of the Kings - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/heroicons@2.1.3/css/solid.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tap-highlight-transparent {
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#121212',
+                        'brand-secondary': '#1E1E1E',
+                        'brand-accent': '#FBBF24', 
+                        'brand-text': '#E5E7EB',
+                        'brand-subtext': '#9CA3AF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-brand-text">
+
+    <div class="container mx-auto p-4 max-w-md">
+
+        <!-- Profile Section -->
+        <header class="bg-brand-secondary rounded-2xl p-4 mb-6 shadow-lg">
+            <div class="flex items-center">
+                <div class="relative">
+                    <img class="w-20 h-20 rounded-full border-4 border-brand-accent" src="https://placehold.co/100x100/333/fff?text=U" alt="Avatar">
+                    <span class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-brand-secondary rounded-full"></span>
+                </div>
+                <div class="mr-4 flex-grow">
+                    <h1 class="text-xl font-bold">نام کاربر</h1>
+                    <p class="text-brand-subtext flex items-center"><i class="h-5 w-5 ml-1 text-yellow-500" data-heroicon-name="shield-check"></i>سطح ۱۲ - استاد کوئیز</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-center mt-4 pt-4 border-t border-gray-700">
+                <div>
+                    <p class="text-sm text-brand-subtext flex items-center justify-center"><i class="h-5 w-5 ml-1" data-heroicon-name="star"></i>امتیاز</p>
+                    <p class="text-xl font-bold text-brand-accent">۱,۲۵۰</p>
+                </div>
+                <div>
+                    <p class="text-sm text-brand-subtext flex items-center justify-center"><i class="h-5 w-5 ml-1" data-heroicon-name="circle-stack"></i>سکه</p>
+                    <p class="text-xl font-bold text-brand-accent">۳۰۰</p>
+                </div>
+                <div>
+                    <p class="text-sm text-brand-subtext flex items-center justify-center"><i class="h-5 w-5 ml-1" data-heroicon-name="puzzle-piece"></i>بازی‌ها</p>
+                    <p class="text-xl font-bold text-brand-accent">۴۲</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Start New Game Button -->
+        <div class="mb-8">
+            <button class="w-full bg-brand-accent text-brand-dark font-bold py-4 px-4 rounded-xl shadow-lg transform transition-transform active:scale-95 hover:bg-yellow-400 tap-highlight-transparent flex items-center justify-center">
+                <i class="h-6 w-6 ml-2" data-heroicon-name="bolt"></i>
+                <span class="text-lg">شروع بازی جدید</span>
+            </button>
+        </div>
+
+        <!-- Game Lists -->
+        <main>
+            <!-- Your Turn -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4 flex items-center"><i class="h-6 w-6 ml-2 text-brand-accent" data-heroicon-name="play-circle"></i>نوبت شما</h2>
+                <div class="space-y-4">
+                    <!-- Game Item -->
+                    <div class="bg-brand-secondary rounded-xl p-4 flex items-center justify-between transform transition-transform active:scale-95 cursor-pointer tap-highlight-transparent">
+                        <div class="flex items-center">
+                            <img class="w-14 h-14 rounded-full" src="https://placehold.co/100x100/E91E63/white?text=A" alt="Opponent">
+                            <div class="mr-4">
+                                <p class="font-semibold text-lg">حریف اول</p>
+                                <p class="text-sm text-brand-subtext flex items-center"><i class="h-4 w-4 ml-1" data-heroicon-name="question-mark-circle"></i>اطلاعات عمومی</p>
+                            </div>
+                        </div>
+                        <i class="h-8 w-8 text-brand-accent" data-heroicon-name="chevron-left"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Opponent's Turn -->
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4 flex items-center"><i class="h-6 w-6 ml-2 text-brand-subtext" data-heroicon-name="clock"></i>نوبت حریف</h2>
+                <div class="space-y-4">
+                    <!-- Game Item -->
+                    <div class="bg-brand-secondary rounded-xl p-4 flex items-center opacity-60">
+                        <img class="w-14 h-14 rounded-full" src="https://placehold.co/100x100/4CAF50/white?text=C" alt="Opponent">
+                        <div class="mr-4">
+                            <p class="font-semibold text-lg">حریف سوم</p>
+                            <p class="text-sm text-brand-subtext flex items-center"><i class="h-4 w-4 ml-1" data-heroicon-name="hourglass"></i>در حال بازی...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Finished Games -->
+            <section>
+                <h2 class="text-xl font-bold mb-4 flex items-center"><i class="h-6 w-6 ml-2 text-brand-subtext" data-heroicon-name="check-circle"></i>بازی‌های تمام شده</h2>
+                <div class="space-y-4">
+                    <!-- Game Item - Win -->
+                    <div class="bg-brand-secondary rounded-xl p-4 flex items-center justify-between opacity-50">
+                        <div class="flex items-center">
+                            <img class="w-14 h-14 rounded-full" src="https://placehold.co/100x100/FF9800/white?text=D" alt="Opponent">
+                            <div class="mr-4">
+                                <p class="font-semibold text-lg">حریف چهارم</p>
+                                <p class="text-sm text-green-400 flex items-center"><i class="h-4 w-4 ml-1" data-heroicon-name="trophy"></i>شما برنده شدید!</p>
+                            </div>
+                        </div>
+                        <span class="font-bold text-lg text-green-400">۲۰ - ۱۵</span>
+                    </div>
+                    <!-- Game Item - Lose -->
+                    <div class="bg-brand-secondary rounded-xl p-4 flex items-center justify-between opacity-50">
+                        <div class="flex items-center">
+                            <img class="w-14 h-14 rounded-full" src="https://placehold.co/100x100/9C27B0/white?text=E" alt="Opponent">
+                            <div class="mr-4">
+                                <p class="font-semibold text-lg">حریف پنجم</p>
+                                <p class="text-sm text-red-400 flex items-center"><i class="h-4 w-4 ml-1" data-heroicon-name="x-circle"></i>شما باختید.</p>
+                            </div>
+                        </div>
+                        <span class="font-bold text-lg text-red-400">۱۰ - ۲۲</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+    </div>
+    <script>
+        document.querySelectorAll('[data-heroicon-name]').forEach(icon => {
+            const iconName = icon.getAttribute('data-heroicon-name');
+            fetch(`https://cdn.jsdelivr.net/npm/heroicons@2.1.3/src/solid/${iconName}.svg`)
+                .then(response => response.text())
+                .then(svgText => {
+                    const parser = new DOMParser();
+                    const svg = parser.parseFromString(svgText, 'image/svg+xml').querySelector('svg');
+                    svg.setAttribute('class', icon.getAttribute('class'));
+                    icon.parentNode.replaceChild(svg, icon);
+                });
+        });
+    </script>
+</body>
+</html>
