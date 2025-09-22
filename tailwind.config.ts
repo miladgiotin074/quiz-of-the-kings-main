@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const rtlcss = require('tailwindcss-rtl');
 
 const config: Config = {
   content: [
@@ -24,7 +25,18 @@ const config: Config = {
         gray: {
           800: '#1f2937',
           900: '#111827',
-        }
+        },
+        'brand-dark': '#121212',
+        'brand-secondary': '#1E1E1E',
+        'brand-accent': '#FBBF24',
+        'brand-text': '#E5E7EB',
+        'brand-subtext': '#9CA3AF',
+      },
+      fontFamily: {
+        'vazir': ['Vazir', 'Tahoma', 'Arial', 'sans-serif'],
+      },
+      boxShadow: {
+        'top-lg': '0 -10px 15px -3px rgba(0, 0, 0, 0.1), 0 -4px 6px -2px rgba(0, 0, 0, 0.05)',
       },
       spacing: {
         '16': '4rem',
@@ -32,6 +44,8 @@ const config: Config = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    rtlcss
+  ],
 };
 export default config;
