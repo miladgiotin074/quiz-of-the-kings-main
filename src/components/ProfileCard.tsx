@@ -36,7 +36,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
       <span className="shadow"></span>
       <span className="edge"></span>
       <div className="front">
-        <div className="flex items-center mb-4 space-x-reverse">
+        <div className="flex items-center mb-4">
           <Avatar
             src={avatarSrc}
             alt={name}
@@ -46,7 +46,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
           />
           <div className="mr-5 flex-grow">
             <h1 className="text-2xl font-bold mb-1 text-white">{name}</h1>
-            <p className="text-brand-subtext flex items-center text-base space-x-reverse">
+            <p className="text-brand-subtext flex items-center text-base">
               <ShieldCheckIcon className="h-5 w-5 ml-2 text-yellow-400" />
               سطح {level} - {title}
             </p>
@@ -54,7 +54,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
         </div>
         <div className="grid grid-cols-3 gap-4 text-center pt-4 border-t border-gray-600">
           <div className="bg-gray-800/50 rounded-lg p-3 backdrop-blur-sm">
-            <p className="text-sm text-brand-subtext flex items-center justify-center mb-1 space-x-reverse">
+            <p className="text-sm text-brand-subtext flex items-center justify-center mb-1">
               <StarIcon className="h-4 w-4 ml-1" />
               امتیاز
             </p>
@@ -63,7 +63,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             </p>
           </div>
           <div className="bg-gray-800/50 rounded-lg p-3 backdrop-blur-sm">
-            <p className="text-sm text-brand-subtext flex items-center justify-center mb-1 space-x-reverse">
+            <p className="text-sm text-brand-subtext flex items-center justify-center mb-1">
               <CircleStackIcon className="h-4 w-4 ml-1" />
               سکه
             </p>
@@ -72,7 +72,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             </p>
           </div>
           <div className="bg-gray-800/50 rounded-lg p-3 backdrop-blur-sm">
-            <p className="text-sm text-brand-subtext flex items-center justify-center mb-1 space-x-reverse">
+            <p className="text-sm text-brand-subtext flex items-center justify-center mb-1">
               <PuzzlePieceIcon className="h-4 w-4 ml-1" />
               بازی‌ها
             </p>

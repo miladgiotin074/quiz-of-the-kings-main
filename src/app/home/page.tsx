@@ -137,7 +137,7 @@ const HomePage: React.FC = () => {
 
   return (
     <Page back={false}>
-      <div className="bg-brand-dark text-brand-text min-h-screen font-vazir">
+      <div className="bg-brand-dark text-brand-text min-h-screen font-vazir-matn" dir="rtl">
         <div className="container mx-auto p-4 max-w-md">
           {/* Profile Section */}
           <div className="mb-8">
