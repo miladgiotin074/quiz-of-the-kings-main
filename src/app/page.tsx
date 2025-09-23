@@ -1,17 +1,21 @@
 'use client';
 
-import React from 'react';
-import { BoltIcon, PlayCircleIcon, ClockIcon, Cog6ToothIcon, ChatBubbleLeftRightIcon, CurrencyDollarIcon } from '@heroicons/react/24/solid';
+import React, { useState } from 'react';
+import { BoltIcon, PlayCircleIcon, ClockIcon, Cog6ToothIcon, ChatBubbleLeftRightIcon, CurrencyDollarIcon, CheckCircleIcon, QuestionMarkCircleIcon} from '@heroicons/react/24/solid';
 import { Page } from '@/components/layout/Page';
 import ProfileCard from '@/components/card/ProfileCard';
 import AwesomeButton from '@/components/button/AwesomeButton';
 import QuickActionButton from '@/components/button/QuickActionButton';
 import GameSection from '@/components/layout/GameSection';
+import GameModeModal from '@/components/common/GameModeModal';
 import type { Game } from '@/components/layout/GameSection';
 
 export default function HomePage() {
+  const [isGameModeModalOpen, setIsGameModeModalOpen] = useState(false);
+
   const profileData = {
     name: 'علی احمدی',
+    username: 'ali_ahmadi',
     level: 12,
     title: 'استاد کوئیز',
     avatarSrc: 'https://api.dicebear.com/7.x/avataaars/svg?seed=DefaultUser&backgroundColor=1e293b&clothesColor=3b82f6',
@@ -32,7 +36,8 @@ export default function HomePage() {
       categoryEmoji: '🧠',
       score: '4 - 2',
       isOnline: true,
-      borderColor: 'border-pink-500'
+      borderColor: 'border-blue-500',
+      status: 'your_turn'
     },
     {
       id: 2,
@@ -42,7 +47,8 @@ export default function HomePage() {
       categoryEmoji: '🎬',
       score: '6 - 3',
       isOnline: true,
-      borderColor: 'border-purple-500'
+      borderColor: 'border-blue-500',
+      status: 'your_turn'
     },
     {
       id: 3,
@@ -52,7 +58,8 @@ export default function HomePage() {
       categoryEmoji: '⚽',
       score: '2 - 1',
       isOnline: false,
-      borderColor: 'border-green-500'
+      borderColor: 'border-blue-500',
+      status: 'your_turn'
     }
   ];
 
@@ -65,7 +72,8 @@ export default function HomePage() {
       categoryEmoji: '📚',
       score: '3 - 5',
       isOnline: true,
-      borderColor: 'border-orange-500'
+      borderColor: 'border-orange-500',
+      status: 'opponent_turn'
     },
     {
       id: 5,
@@ -75,7 +83,8 @@ export default function HomePage() {
       categoryEmoji: '🔬',
       score: '1 - 4',
       isOnline: false,
-      borderColor: 'border-blue-500'
+      borderColor: 'border-orange-500',
+      status: 'opponent_turn'
     },
     {
       id: 6,
@@ -85,7 +94,8 @@ export default function HomePage() {
       categoryEmoji: '🌍',
       score: '7 - 2',
       isOnline: true,
-      borderColor: 'border-yellow-500'
+      borderColor: 'border-orange-500',
+      status: 'opponent_turn'
     }
   ];
 
@@ -98,8 +108,9 @@ export default function HomePage() {
       categoryEmoji: '📖',
       score: '8 - 6',
       isOnline: false,
-      borderColor: 'border-gray-500',
-      finished: true
+      borderColor: 'border-slate-500',
+      status: 'finished',
+      result: 'win'
     },
     {
       id: 8,
@@ -109,8 +120,9 @@ export default function HomePage() {
       categoryEmoji: '🎨',
       score: '5 - 5',
       isOnline: true,
-      borderColor: 'border-indigo-500',
-      finished: true
+      borderColor: 'border-slate-500',
+      status: 'finished',
+      result: 'draw'
     },
     {
       id: 9,
@@ -120,13 +132,55 @@ export default function HomePage() {
       categoryEmoji: '🎵',
       score: '3 - 9',
       isOnline: false,
-      borderColor: 'border-red-500',
-      finished: true
+      borderColor: 'border-slate-500',
+      status: 'finished',
+      result: 'lose'
+    },
+    {
+      id: 10,
+      playerName: 'احمد کریمی',
+      playerAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Player10&backgroundColor=4caf50&clothesColor=388e3c',
+      category: 'تاریخ',
+      categoryEmoji: '🏛️',
+      score: '7 - 0',
+      isOnline: true,
+      borderColor: 'border-slate-500',
+      status: 'finished',
+      result: 'timeout_win'
+    },
+    {
+      id: 11,
+      playerName: 'فاطمه احمدی',
+      playerAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Player11&backgroundColor=ff9800&clothesColor=f57c00',
+      category: 'علوم',
+      categoryEmoji: '🔬',
+      score: '2 - 8',
+      isOnline: false,
+      borderColor: 'border-slate-500',
+      status: 'finished',
+      result: 'timeout_lose'
     }
   ];
 
   const handleStartNewGame = () => {
-    console.log('Starting new game...');
+    console.log('Opening game mode modal...');
+    setIsGameModeModalOpen(true);
+  };
+
+  const handleCloseGameModeModal = () => {
+    setIsGameModeModalOpen(false);
+  };
+
+  const handleRandomOpponent = () => {
+    console.log('Starting game with random opponent...');
+    setIsGameModeModalOpen(false);
+    // اینجا می‌توانید منطق شروع بازی با حریف شانسی را اضافه کنید
+  };
+
+  const handlePlayWithFriends = () => {
+    console.log('Starting game with friends...');
+    setIsGameModeModalOpen(false);
+    // اینجا می‌توانید منطق شروع بازی با دوستان را اضافه کنید
   };
 
   const handleGameClick = (gameId: number) => {
@@ -152,6 +206,16 @@ export default function HomePage() {
     // اینجا می‌توانید به صفحه سکه بازار هدایت کنید
   };
 
+  const handleQuestionFactoryClick = () => {
+    console.log('Question Factory clicked');
+    // اینجا می‌توانید به صفحه کارخانه سوال هدایت کنید
+  };
+
+  const handleUnlimitedGamesClick = () => {
+    console.log('Unlimited Games clicked');
+    // اینجا می‌توانید به صفحه بازی‌های نامحدود هدایت کنید
+  };
+
   return (
     <Page back={false}>
       <div className="bg-brand-dark text-brand-text min-h-screen font-vazir-matn" dir="rtl">
@@ -160,6 +224,7 @@ export default function HomePage() {
           <div className="mb-8">
             <ProfileCard
               name={profileData.name}
+              username={profileData.username}
               level={profileData.level}
               title={profileData.title}
               avatarSrc={profileData.avatarSrc}
@@ -171,12 +236,12 @@ export default function HomePage() {
 
           {/* Quick Action Buttons */}
           <div className="mb-8">
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-3 mb-3">
               <QuickActionButton
-                onClick={handleSettingsClick}
-                icon={<Cog6ToothIcon />}
-                label="تنظیمات"
-                variant="gray"
+                onClick={handleQuestionFactoryClick}
+                icon={<QuestionMarkCircleIcon />}
+                label="کارخانه سوال"
+                variant="green"
               />
               <QuickActionButton
                 onClick={handleChatsClick}
@@ -220,18 +285,25 @@ export default function HomePage() {
               icon={<ClockIcon />}
               games={opponentTurnGames}
               onGameClick={handleGameClick}
-              disabled={true}
             />
 
             <GameSection
               title="بازی‌های تمام شده"
-              icon={<PlayCircleIcon />}
+              icon={<CheckCircleIcon />}
               games={finishedGames}
               onGameClick={handleGameClick}
             />
           </main>
         </div>
       </div>
+      
+      {/* Game Mode Modal */}
+      <GameModeModal
+        isOpen={isGameModeModalOpen}
+        onClose={handleCloseGameModeModal}
+        onRandomOpponent={handleRandomOpponent}
+        onPlayWithFriends={handlePlayWithFriends}
+      />
     </Page>
   );
 }

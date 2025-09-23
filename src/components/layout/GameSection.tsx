@@ -13,6 +13,8 @@ interface Game {
   isOnline: boolean;
   borderColor: string;
   finished?: boolean;
+  status?: 'your_turn' | 'opponent_turn' | 'finished';
+  result?: 'win' | 'lose' | 'draw' | 'timeout_win' | 'timeout_lose';
 }
 
 interface GameSectionProps {
@@ -38,9 +40,9 @@ export default function GameSection({
 
   return (
     <section className={`mb-10 ${className}`}>
-      <h2 className="text-2xl font-bold mb-6 flex items-center">
+      <h2 className="text-2xl font-bold mb-6 flex items-center gap-1">
         {React.cloneElement(icon as React.ReactElement, {
-          className: 'h-7 w-7 mr-3 text-brand-accent'
+          className: 'h-7 w-7 text-brand-accent'
         })}
         {title}
       </h2>
@@ -57,6 +59,8 @@ export default function GameSection({
             borderColor={game.borderColor}
             disabled={disabled}
             finished={game.finished}
+            status={game.status}
+            result={game.result}
             onClick={() => onGameClick(game.id)}
           />
         ))}

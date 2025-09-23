@@ -70,7 +70,7 @@ export default function QuickActionButton({
               className: `h-6 w-6 mb-1 ${variant === 'gray' ? 'text-brand-accent' : 'text-white'}`
             })}
             {badge && badge > 0 && (
-              <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-lg animate-pulse">
+              <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-lg">
                 {badge}
               </div>
             )}

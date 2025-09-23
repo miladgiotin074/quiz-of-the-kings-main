@@ -47,9 +47,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             statusSizeClasses[size]
           } ${
             isOnline ? 'bg-green-500' : 'bg-red-500'
-          } border-2 border-white rounded-full ${
-            isOnline ? 'animate-pulse' : ''
-          }`}
+          } border-2 border-white rounded-full }`}
         ></span>
       )}
     </div>

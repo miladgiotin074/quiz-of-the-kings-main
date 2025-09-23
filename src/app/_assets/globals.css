@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global styles for better mobile UX */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Disable right-click context menu */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Disable drag and drop for images */
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
 /* ProfileCard 3D Styles */
 .profile-card-3d {
   position: relative;
@@ -65,23 +95,9 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.profile-card-3d:hover {
-  filter: brightness(110%);
-}
-
-.profile-card-3d:hover .front {
-  transform: translateY(-8px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
-}
-
 .profile-card-3d:active .front {
   transform: translateY(-3px);
   transition: transform 34ms;
-}
-
-.profile-card-3d:hover .shadow {
-  transform: translateY(5px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .profile-card-3d:active .shadow {
@@ -160,23 +176,9 @@
   justify-content: space-between;
 }
 
-.game-card-3d:hover {
-  filter: brightness(110%);
-}
-
-.game-card-3d:hover .front {
-  transform: translateY(-6px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
-}
-
 .game-card-3d:active .front {
   transform: translateY(-2px);
   transition: transform 34ms;
-}
-
-.game-card-3d:hover .shadow {
-  transform: translateY(4px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .game-card-3d:active .shadow {
@@ -198,10 +200,7 @@
   filter: brightness(60%) opacity(50%);
 }
 
-.score-badge {
-  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.2);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
+
 
 /* AwesomeButton 3D Styles */
 .btn-awesome {
@@ -272,23 +271,9 @@
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
-.btn-awesome:hover {
-  filter: brightness(110%);
-}
-
-.btn-awesome:hover .front {
-  transform: translateY(-6px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
-}
-
 .btn-awesome:active .front {
   transform: translateY(-2px);
   transition: transform 34ms;
-}
-
-.btn-awesome:hover .shadow {
-  transform: translateY(4px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .btn-awesome:active .shadow {
@@ -470,23 +455,9 @@
   );
 }
 
-.action-button-3d:hover {
-  filter: brightness(110%);
-}
-
-.action-button-3d:hover .front {
-  transform: translateY(-6px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
-}
-
 .action-button-3d:active .front {
   transform: translateY(-2px);
   transition: transform 34ms;
-}
-
-.action-button-3d:hover .shadow {
-  transform: translateY(4px);
-  transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
 }
 
 .action-button-3d:active .shadow {
