@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ShieldCheckIcon, StarIcon, CircleStackIcon, PuzzlePieceIcon } from '@heroicons/react/24/solid';
-import Avatar from './Avatar';
+import Avatar from '../common/Avatar';
 
 interface ProfileStats {
   score: number;
@@ -83,101 +83,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
         </div>
       </div>
       
-      <style jsx>{`
-        .profile-card-3d {
-          position: relative;
-          border: none;
-          background: transparent;
-          padding: 0;
-          cursor: pointer;
-          outline-offset: 4px;
-          transition: filter 250ms;
-          user-select: none;
-          width: 100%;
-        }
-        
-        .profile-card-3d .shadow {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border-radius: 16px;
-          background: linear-gradient(
-            135deg,
-            rgba(0, 0, 0, 0.4) 0%,
-            rgba(0, 0, 0, 0.5) 50%,
-            rgba(0, 0, 0, 0.6) 100%
-          );
-          will-change: transform;
-          transform: translateY(3px);
-          transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
-        }
-        
-        .profile-card-3d .edge {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          border-radius: 16px;
-          background: linear-gradient(
-            to left,
-            #0F172A 0%,
-            #1E293B 8%,
-            #1E293B 92%,
-            #0F172A 100%
-          );
-        }
-        
-        .profile-card-3d .front {
-          position: relative;
-          border-radius: 16px;
-          background: linear-gradient(
-            135deg,
-            #1E1E1E 0%,
-            #2A2A2A 50%,
-            #1A1A1A 100%
-          );
-          will-change: transform;
-          transform: translateY(-6px);
-          transition: transform 600ms cubic-bezier(.3, .7, .4, 1);
-          padding: 16px;
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-        }
-        
-        .profile-card-3d:hover {
-          filter: brightness(110%);
-        }
-        
-        .profile-card-3d:hover .front {
-          transform: translateY(-8px);
-          transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
-        }
-        
-        .profile-card-3d:active .front {
-          transform: translateY(-3px);
-          transition: transform 34ms;
-        }
-        
-        .profile-card-3d:hover .shadow {
-          transform: translateY(5px);
-          transition: transform 250ms cubic-bezier(.3, .7, .4, 1.5);
-        }
-        
-        .profile-card-3d:active .shadow {
-          transform: translateY(2px);
-          transition: transform 34ms;
-        }
-        
-        .profile-card-3d:focus:not(:focus-visible) {
-          outline: none;
-        }
-        
-        .tap-highlight-transparent {
-          -webkit-tap-highlight-color: transparent;
-        }
-      `}</style>
+
     </div>
   );
 };
