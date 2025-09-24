@@ -3,6 +3,7 @@
 import React from 'react';
 import { ChevronLeftIcon } from '@heroicons/react/24/solid';
 import Avatar from '../common/Avatar';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
 
 interface GameCardProps {
   playerName: string;
@@ -35,6 +36,13 @@ export const GameCard: React.FC<GameCardProps> = ({
   status = 'your_turn',
   result
 }) => {
+  const executeWithDelay = useDelayedAction(200);
+
+  const handleClick = () => {
+    if (onClick && !disabled && !finished) {
+      executeWithDelay(onClick);
+    }
+  };
   const cardClasses = `game-card-3d tap-highlight-transparent ${
     disabled ? 'disabled' : ''
   } ${finished ? 'finished' : ''} ${className}`;
@@ -93,7 +101,7 @@ export const GameCard: React.FC<GameCardProps> = ({
   const scoreShadow = getScoreShadow(borderColor);
 
   return (
-    <div className={cardClasses} onClick={onClick}>
+    <div className={cardClasses} onClick={handleClick}>
       <span className="shadow"></span>
       <span className="edge"></span>
       <div className="front">

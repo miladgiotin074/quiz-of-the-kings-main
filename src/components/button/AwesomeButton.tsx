@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { BoltIcon } from '@heroicons/react/24/solid';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
 
 interface AwesomeButtonProps {
   children: React.ReactNode;
@@ -18,10 +19,17 @@ export const AwesomeButton: React.FC<AwesomeButtonProps> = ({
   icon,
   disabled = false
 }) => {
+  const executeWithDelay = useDelayedAction(200);
+
+  const handleClick = () => {
+    if (onClick && !disabled) {
+      executeWithDelay(onClick);
+    }
+  };
   return (
     <button
       className={`btn-awesome tap-highlight-transparent ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
-      onClick={onClick}
+      onClick={handleClick}
       disabled={disabled}
     >
       <span className="shadow"></span>

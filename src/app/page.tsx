@@ -8,10 +8,12 @@ import AwesomeButton from '@/components/button/AwesomeButton';
 import QuickActionButton from '@/components/button/QuickActionButton';
 import GameSection from '@/components/layout/GameSection';
 import GameModeModal from '@/components/common/GameModeModal';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
 import type { Game } from '@/components/layout/GameSection';
 
 export default function HomePage() {
   const [isGameModeModalOpen, setIsGameModeModalOpen] = useState(false);
+  const executeWithDelay = useDelayedAction(200);
 
   const profileData = {
     name: 'علی احمدی',
@@ -164,7 +166,9 @@ export default function HomePage() {
 
   const handleStartNewGame = () => {
     console.log('Opening game mode modal...');
-    setIsGameModeModalOpen(true);
+    executeWithDelay(() => {
+      setIsGameModeModalOpen(true);
+    });
   };
 
   const handleCloseGameModeModal = () => {
@@ -173,47 +177,67 @@ export default function HomePage() {
 
   const handleRandomOpponent = () => {
     console.log('Starting game with random opponent...');
-    setIsGameModeModalOpen(false);
-    // اینجا می‌توانید منطق شروع بازی با حریف شانسی را اضافه کنید
+    executeWithDelay(() => {
+      setIsGameModeModalOpen(false);
+      // اینجا می‌توانید منطق شروع بازی با حریف شانسی را اضافه کنید
+    });
   };
 
   const handlePlayWithFriends = () => {
     console.log('Starting game with friends...');
-    setIsGameModeModalOpen(false);
-    // اینجا می‌توانید منطق شروع بازی با دوستان را اضافه کنید
+    executeWithDelay(() => {
+      setIsGameModeModalOpen(false);
+      // اینجا می‌توانید منطق شروع بازی با دوستان را اضافه کنید
+    });
   };
 
   const handleGameClick = (gameId: number) => {
     console.log(`Clicked game with ID: ${gameId}`);
+    executeWithDelay(() => {
+      // اینجا می‌توانید منطق ورود به بازی را اضافه کنید
+    });
   };
 
   const handleProfileClick = () => {
     console.log('Profile clicked');
+    executeWithDelay(() => {
+      // اینجا می‌توانید به صفحه پروفایل هدایت کنید
+    });
   };
 
   const handleSettingsClick = () => {
     console.log('Settings clicked');
-    // اینجا می‌توانید به صفحه تنظیمات هدایت کنید
+    executeWithDelay(() => {
+      // اینجا می‌توانید به صفحه تنظیمات هدایت کنید
+    });
   };
 
   const handleChatsClick = () => {
     console.log('Chats clicked');
-    // اینجا می‌توانید به صفحه چت‌ها هدایت کنید
+    executeWithDelay(() => {
+      // اینجا می‌توانید به صفحه چت‌ها هدایت کنید
+    });
   };
 
   const handleCoinMarketClick = () => {
     console.log('Coin Market clicked');
-    // اینجا می‌توانید به صفحه سکه بازار هدایت کنید
+    executeWithDelay(() => {
+      // اینجا می‌توانید به صفحه سکه بازار هدایت کنید
+    });
   };
 
   const handleQuestionFactoryClick = () => {
     console.log('Question Factory clicked');
-    // اینجا می‌توانید به صفحه کارخانه سوال هدایت کنید
+    executeWithDelay(() => {
+      // اینجا می‌توانید به صفحه کارخانه سوال هدایت کنید
+    });
   };
 
   const handleUnlimitedGamesClick = () => {
     console.log('Unlimited Games clicked');
-    // اینجا می‌توانید به صفحه بازی‌های نامحدود هدایت کنید
+    executeWithDelay(() => {
+      // اینجا می‌توانید به صفحه بازی‌های نامحدود هدایت کنید
+    });
   };
 
   return (

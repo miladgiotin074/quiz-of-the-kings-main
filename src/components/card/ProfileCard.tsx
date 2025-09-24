@@ -3,6 +3,7 @@
 import React from 'react';
 import { ShieldCheckIcon, StarIcon, CircleStackIcon, BoltIcon } from '@heroicons/react/24/solid';
 import Avatar from '../common/Avatar';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
 
 interface ProfileStats {
   score: number;
@@ -35,8 +36,15 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
   onEditClick,
   className = ''
 }) => {
+  const executeWithDelay = useDelayedAction(200);
+
+  const handleClick = () => {
+    if (onClick) {
+      executeWithDelay(onClick);
+    }
+  };
   return (
-    <div className={`profile-card-3d tap-highlight-transparent ${className}`} onClick={onClick}>
+    <div className={`profile-card-3d tap-highlight-transparent ${className}`} onClick={handleClick}>
       <span className="shadow"></span>
       <span className="edge"></span>
       <div className="front">

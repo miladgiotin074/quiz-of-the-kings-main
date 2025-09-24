@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
 
 interface QuickActionButtonProps {
   onClick: () => void;
@@ -19,6 +20,11 @@ export default function QuickActionButton({
   badge,
   className = ''
 }: QuickActionButtonProps) {
+  const executeWithDelay = useDelayedAction(200);
+
+  const handleClick = () => {
+    executeWithDelay(onClick);
+  };
   const getVariantClasses = () => {
     switch (variant) {
       case 'blue':
@@ -62,7 +68,7 @@ export default function QuickActionButton({
         <span className="shadow"></span>
         <span className={`edge ${variantClasses.edge}`}></span>
         <button
-          onClick={onClick}
+          onClick={handleClick}
           className={`front ${variantClasses.front} flex flex-col items-center justify-center p-3 rounded-xl transition-all duration-300`}
         >
           <div className="relative">

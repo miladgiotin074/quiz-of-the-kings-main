@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
 
 export function ErrorPage({
   error,
@@ -7,6 +8,13 @@ export function ErrorPage({
   error: Error & { digest?: string }
   reset?: () => void
 }) {
+  const executeWithDelay = useDelayedAction(200);
+
+  const handleReset = () => {
+    if (reset) {
+      executeWithDelay(reset);
+    }
+  };
   useEffect(() => {
     // Log the error to an error reporting service
     console.error(error);
@@ -20,7 +28,7 @@ export function ErrorPage({
           {error.message}
         </code>
       </blockquote>
-      {reset && <button onClick={() => reset()}>Try again</button>}
+      {reset && <button onClick={handleReset}>Try again</button>}
     </div>
   );
 }
