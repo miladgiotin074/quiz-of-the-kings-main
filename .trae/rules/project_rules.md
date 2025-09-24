@@ -1,137 +1,327 @@
-📦 PROJECT RULES – Telegram WebApp Quiz (Mobile Only)
+# قوانین و الگوهای طراحی پروژه Quiz of the Kings
 
-🧠 General Overview:
-- Build a Telegram Web App for mobile users only.
-- App allows users to compete in real-time quiz games.
-- Users can play in different categories.
-- The app must feel like a native mobile app, not a website.
-- Entire UI must use a unified dark theme.
-- No top AppBar anywhere in the app.
-- Sticky Bottom Navigation with 4 tabs:
-  - Home
-  - Chats
-  - Notifications
-  - Settings
-- Use Skeleton Loading for async content or page transitions.
-- Entire UI must be fully responsive and mobile-first.
-- Must be fully i18n (English + Persian) with:
-  - Language switching in real-time
-  - Full RTL/LTR layout switching
-- Code must be error-free, production-ready, and component-based.
-- One component per file – clean, modular structure.
+## قوانین کلی پروژه
 
-🌐 Localization:
-- Use `i18next` (or similar) for all strings.
-- **NEVER hardcode strings; ALWAYS use translation keys from locale files.**
-- All text content must use `t('key')` function for translations.
-- Add new translation keys to both `en.json` and `fa.json` files.
-- Settings page must allow switching between English & Persian.
-- Direction must be `rtl` for Persian and `ltr` for English.
-- Language change must apply in real-time across all components.
-- **Rule: Any hardcoded text is strictly forbidden - use i18n keys only.**
+### 1. محدودیت‌های اصلی
+- **موبایل-فقط**: تمام طراحی‌ها باید برای موبایل بهینه شوند
+- **تم تیره**: (رنگ های اصلی در tailwind.config تعریف شده)استفاده از رنگ‌های تیره به عنوان تم اصلی
 
-🎨 UI/UX Standards:
-- Responsive mobile-first design only.
-- No desktop-specific layouts or elements.
-- No AppBar – use bottom navigation only.
-- Bottom nav must look and behave like native mobile apps.
-- Use Skeleton Loaders during loading states (e.g., Home, Notifications).
-- Smooth and elegant dark UI with consistent theming.
+### 2. قوانین بومی‌سازی (Localization)
+- پشتیبانی کامل از RTL/LTR
+- استفاده از `tailwindcss-rtl` برای مدیریت جهت متن
 
-📁 Component & Page Structure:
-- One file per component.
-- Use folders like `/components`, `/pages`, `/hooks`, `/i18n`, etc.
-- All pages must be wrapped in the `<Page>` component.
+### 3. استانداردهای UI/UX
+- طراحی موبایل-فقط (Mobile-First)
+- عدم وجود AppBar در صفحات
+- تمرکز بر تجربه کاربری ساده و روان
 
-✅ Page Component Usage:
+## ساختار کامپوننت و صفحه
+
+### 1. قوانین فایل‌ها
+- یک فایل برای هر کامپوننت
+- استفاده از کامپوننت `<Page>` برای همه صفحات
+- قرارگیری کامپوننت‌ها در پوشه‌های مناسب:
+  - `src/components/common/` - کامپوننت‌های عمومی
+  - `src/components/layout/` - کامپوننت‌های مربوط به layout
+  - `src/components/button/` - انواع دکمه‌ها
+  - `src/components/card/` - انواع کارت‌ها
+
+### 2. ساختار صفحات
+همه صفحات باید از این الگو پیروی کنند:
+
 ```tsx
-import { Page } from '@/components/Page';
-
-// Main entry pages (e.g., Home, Settings)
-<Page back={false}>{content}</Page>
-
-// All other pages (with default back button)
-<Page>{content}</Page>
-
-✅ Always wrap every page in <Page>.
-
-✅ Use back={false} only on main/root pages.
-
-✅ Default behavior shows a back button.
-
-✅ <Page> should auto-manage the Telegram back button behavior.
-
-🧭 Navigation Rules:
-
+import { Page } from '@/components/layout/Page';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
 
+export default function PageName() {
+  const router = useRouter();
+  const delayedAction = useDelayedAction();
+
+  const handleNavigation = useCallback((path: string) => {
+    delayedAction(() => router.push(path));
+  }, [router, delayedAction]);
+
+  return (
+    <Page>
+      <div className="flex flex-col min-h-screen bg-brand-dark text-brand-text">
+        {/* محتوای صفحه */}
+      </div>
+    </Page>
+  );
+}
+```
+
+## رنگ‌بندی و تم
+
+### رنگ‌های اصلی (از tailwind.config.ts)
+```css
+--brand-dark: #1a1a1a
+--brand-secondary: #2a2a2a
+--brand-accent: #4a90e2
+--brand-text: #ffffff
+--brand-subtext: #b0b0b0
+```
+
+### کلاس‌های رنگی
+- `bg-brand-dark` - پس‌زمینه اصلی
+- `bg-brand-secondary` - پس‌زمینه ثانویه
+- `bg-brand-accent` - رنگ تاکیدی
+- `text-brand-text` - متن اصلی
+- `text-brand-subtext` - متن فرعی
+
+## کامپوننت‌های آماده
+
+### 1. دکمه‌ها
+
+#### AwesomeButton
+```tsx
+<AwesomeButton 
+  onClick={handleClick}
+  className="w-full"
+  disabled={false}
+>
+  متن دکمه
+</AwesomeButton>
+```
+
+#### QuickActionButton
+```tsx
+<QuickActionButton
+  color="blue" // gray, blue, yellow, green, red, purple
+  onClick={handleClick}
+  className="w-full"
+>
+  <Icon className="w-6 h-6" />
+  <span>متن دکمه</span>
+</QuickActionButton>
+```
+
+### 2. کارت‌ها
+
+#### GameCard
+```tsx
+<GameCard
+  title="عنوان بازی"
+  description="توضیحات بازی"
+  image="/path/to/image.jpg"
+  onClick={handleGameClick}
+/>
+```
+
+#### ProfileCard
+```tsx
+<ProfileCard
+  name="نام کاربر"
+  avatar="/path/to/avatar.jpg"
+  level={5}
+  score={1250}
+  isOnline={true}
+/>
+```
+
+### 3. کامپوننت‌های عمومی
+
+#### Avatar
+```tsx
+<Avatar
+  src="/path/to/avatar.jpg"
+  size="md" // sm, md, lg
+  isOnline={true}
+  borderColor="brand-accent"
+/>
+```
+
+## الگوهای انیمیشن و افکت‌های 3D
+
+### کلاس‌های CSS آماده
+- `.game-card-3d` - افکت سه‌بعدی برای کارت‌های بازی
+- `.btn-awesome` - افکت سه‌بعدی برای دکمه‌های اصلی
+- `.action-button-3d` - افکت سه‌بعدی برای دکمه‌های عملیات
+
+### رنگ‌های دکمه‌های عملیات
+- `gray` - خاکستری
+- `blue` - آبی
+- `yellow` - زرد
+- `green` - سبز
+- `red` - قرمز
+- `purple` - بنفش
+
+## قوانین ناوبری
+
+### 1. استفاده از هوک‌ها
+```tsx
 const router = useRouter();
+const delayedAction = useDelayedAction();
 
-const handleNavigateTo[PageName] = useCallback(() => {
-  console.log('Navigating to [page-name]...');
-  router.push('/route-path');
-}, [router]);
+const handleNavigation = useCallback((path: string) => {
+  delayedAction(() => router.push(path));
+}, [router, delayedAction]);
+```
+
+### 2. مدیریت دکمه بازگشت تلگرام
+- کامپوننت `Page` به طور خودکار دکمه بازگشت را مدیریت می‌کند
+- در مودال‌ها از `backButton` استفاده کنید:
+
+```tsx
+import { backButton } from '@telegram-apps/sdk-react';
+
+useEffect(() => {
+  backButton.show();
+  const handleBackClick = () => onClose();
+  backButton.on('click', handleBackClick);
+  
+  return () => {
+    backButton.off('click', handleBackClick);
+    backButton.hide();
+  };
+}, [onClose]);
+```
+
+## ساختار مودال‌ها
+
+### الگوی استاندارد مودال
+```tsx
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  // سایر پراپ‌های مخصوص مودال
+}
+
+export function CustomModal({ isOpen, onClose, ...props }: ModalProps) {
+  useEffect(() => {
+    if (isOpen) {
+      backButton.show();
+      const handleBackClick = () => onClose();
+      backButton.on('click', handleBackClick);
+      
+      return () => {
+        backButton.off('click', handleBackClick);
+        backButton.hide();
+      };
+    }
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+      <div className="bg-brand-secondary rounded-lg p-6 w-full max-w-md">
+        {/* محتوای مودال */}
+      </div>
+    </div>
+  );
+}
+```
+
+## کیفیت کد و بهترین شیوه‌ها
+
+### 1. TypeScript
+- استفاده کامل از TypeScript
+- تعریف interface برای همه پراپ‌ها
+- استفاده از Generic Types در صورت نیاز
+
+### 2. کامپوننت‌های تابعی
+- استفاده از Function Components
+- استفاده از React Hooks
+- مدیریت state با useState و useEffect
+
+### 3. هوک‌های سفارشی
+- `useDelayedAction` - برای تاخیر در اجرای عملیات
+
+### 4. مدیریت خطا
+- مدیریت خطاهای async با try-catch
 
 
-Rules:
+## صفحات اصلی پروژه
 
-✅ Always use useRouter from next/navigation.
 
-✅ Wrap navigation handlers in useCallback.
+## نکات مهم برای توسعه
 
-✅ Include [router] in dependency array.
+### 1. بهینه‌سازی عملکرد
+- استفاده از `useCallback` برای توابع
 
-✅ Add console.log for debug visibility.
+### 2. تست و کیفیت
+- نوشتن کد تمیز و قابل نگهداری
+- استفاده از ESLint برای کیفیت کد
+- تست کامپوننت‌ها قبل از ادغام
 
-✅ Use descriptive function names: handleNavigateTo[PageName].
+### 3. سازگاری
+- تست روی دستگاه‌های مختلف
+- بررسی عملکرد در مرورگرهای مختلف
 
-💡 Code Quality & Best Practices:
+## مثال کامل یک صفحه
 
-Use TypeScript across all files.
+```tsx
+// src/app/example/page.tsx
+import { Page } from '@/components/layout/Page';
+import { AwesomeButton } from '@/components/button/AwesomeButton';
+import { QuickActionButton } from '@/components/button/QuickActionButton';
+import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
+import { useDelayedAction } from '@/hooks/useDelayedAction';
+import { HomeIcon, UserIcon } from '@heroicons/react/24/outline';
 
-Use functional components only.
+export default function ExamplePage() {
+  const router = useRouter();
+  const delayedAction = useDelayedAction();
+  const [loading, setLoading] = useState(false);
 
-Create reusable components when needed.
+  const handleNavigation = useCallback((path: string) => {
+    delayedAction(() => router.push(path));
+  }, [router, delayedAction]);
 
-Avoid repetition.
+  const handleAction = useCallback(async () => {
+    setLoading(true);
+    try {
+      // انجام عملیات
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    } catch (error) {
+      console.error('خطا در انجام عملیات:', error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
-Validate all code before use — no syntax or runtime errors.
+  return (
+    <Page>
+      <div className="flex flex-col min-h-screen bg-brand-dark text-brand-text p-4">
+        <h1 className="text-2xl font-bold mb-6 text-center">
+          صفحه نمونه
+        </h1>
+        
+        <div className="flex-1 space-y-4">
+          <AwesomeButton 
+            onClick={handleAction}
+            disabled={loading}
+            className="w-full"
+          >
+            {loading ? 'در حال انجام...' : 'انجام عملیات'}
+          </AwesomeButton>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <QuickActionButton
+              color="blue"
+              onClick={() => handleNavigation('/home')}
+            >
+              <HomeIcon className="w-6 h-6" />
+              <span>خانه</span>
+            </QuickActionButton>
+            
+            <QuickActionButton
+              color="green"
+              onClick={() => handleNavigation('/profile')}
+            >
+              <UserIcon className="w-6 h-6" />
+              <span>پروفایل</span>
+            </QuickActionButton>
+          </div>
+        </div>
+      </div>
+    </Page>
+  );
+}
+```
 
-Prefer custom hooks for shared logic.
-
-Follow modern naming conventions.
-
-Prioritize mobile performance and UX polish.
-
-🔌 Backend Communication Architecture:
-
-- **Socket.io Integration**: All real-time communication with backend must use Socket.io.
-- **Connection Management**: Establish persistent WebSocket connection on app initialization.
-- **Event-Based Communication**: Use event-driven architecture for all data exchange.
-- **Real-time Features**: Quiz games, notifications, chat messages via WebSocket events.
-- **Fallback Strategy**: HTTP requests only for initial authentication and critical operations.
-- **Connection States**: Handle connecting, connected, disconnected, and reconnecting states.
-- **Error Handling**: Implement robust error handling for socket connection failures.
-- **Auto-Reconnection**: Automatic reconnection with exponential backoff strategy.
-- **Message Queue**: Queue messages when offline and send when connection restored.
-- **Typing Indicators**: Real-time typing indicators in chat using socket events.
-- **Live Updates**: Game scores, leaderboards, and user status via socket broadcasts.
-
-🚀 First Steps To Implement:
-
-Create main layout with bottom navigation.
-
-Build Home, Chats, Notifications, Settings pages.
-
-Wrap all pages with <Page> as per rules.
-
-Add real-time language switcher in Settings.
-
-Implement RTL/LTR switching based on language.
-
-Add Skeleton loaders for Home & Notifications pages.
-
-Use consistent dark theme throughout the app.
-
-Implement Socket.io client connection and event handlers.
+این قوانین و الگوها باید در تمام مراحل توسعه رعایت شوند تا یکپارچگی و کیفیت پروژه حفظ شود.
