@@ -114,7 +114,6 @@ export default function RandomOpponentPage() {
           <AwesomeButton
             onClick={handleCancelSearch}
             icon={<XMarkIcon className="h-6 w-6" />}
-            className="bg-red-600 hover:bg-red-700 border-red-500"
           >
             لغو جستجو
           </AwesomeButton>

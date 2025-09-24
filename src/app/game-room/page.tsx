@@ -7,7 +7,8 @@ import { Avatar } from '@/components/common/Avatar';
 import { useRouter } from 'next/navigation';
 import { useCallback } from 'react';
 import { useDelayedAction } from '@/hooks/useDelayedAction';
-import { PlayIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
+import { PlayIcon, CheckCircleIcon, XCircleIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
+import QuickActionButton from '@/components/button/QuickActionButton';
 
 interface PlayerData {
   name: string;
@@ -175,14 +176,22 @@ export default function GameRoomPage() {
           </div>
         </div>
 
-        {/* Play Game Button */}
-        <div className="mb-8">
+        {/* Action Buttons */}
+        <div className="mb-6 space-y-4">
           <AwesomeButton
             onClick={handlePlayGame}
             icon={<PlayIcon className="h-7 w-7" />}
           >
             بازی کن
           </AwesomeButton>
+          
+          <QuickActionButton
+            onClick={() => console.log('Opening chat...')}
+            icon={<ChatBubbleLeftRightIcon className="w-6 h-6" />}
+            label="چت با کاربر"
+            variant="blue"
+            className="w-full"
+          />
         </div>
 
         {/* Rounds Results */}
