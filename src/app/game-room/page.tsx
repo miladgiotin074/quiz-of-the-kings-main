@@ -186,7 +186,7 @@ export default function GameRoomPage() {
           </AwesomeButton>
           
           <QuickActionButton
-            onClick={() => console.log('Opening chat...')}
+            onClick={() => handleNavigation('/user-chat')}
             icon={<ChatBubbleLeftRightIcon className="w-6 h-6" />}
             label="چت با کاربر"
             variant="blue"

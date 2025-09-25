@@ -13,6 +13,13 @@ interface AvatarProps {
 }
 
 const sizeClasses = {
+  sm: { width: 48, height: 48 },
+  md: { width: 64, height: 64 },
+  lg: { width: 80, height: 80 },
+  xl: { width: 96, height: 96 }
+};
+
+const sizeClassNames = {
   sm: 'w-12 h-12',
   md: 'w-16 h-16',
   lg: 'w-20 h-20',
@@ -36,10 +43,13 @@ export const Avatar: React.FC<AvatarProps> = ({
 }) => {
   return (
     <div className={`relative ${className}`}>
-      <img
-        className={`${sizeClasses[size]} rounded-full border-2 ${borderColor} shadow-lg`}
+      <Image
+        className={`${sizeClassNames[size]} rounded-full border-2 ${borderColor} shadow-lg object-cover`}
         src={src}
         alt={alt}
+        width={sizeClasses[size].width}
+        height={sizeClasses[size].height}
+        priority={false}
       />
       {isOnline !== undefined && (
         <span
@@ -47,7 +57,7 @@ export const Avatar: React.FC<AvatarProps> = ({
             statusSizeClasses[size]
           } ${
             isOnline ? 'bg-green-500' : 'bg-red-500'
-          } border-2 border-white rounded-full }`}
+          } border-2 border-white rounded-full`}
         ></span>
       )}
     </div>

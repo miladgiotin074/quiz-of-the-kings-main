@@ -11,6 +11,7 @@ interface QuickActionButtonProps {
   badge?: number;
   className?: string;
   isQuizPage?: boolean; // پراپ جدید برای تشخیص صفحه quiz-game
+  disabled?: boolean; // پراپ disabled اضافه شد
 }
 
 export default function QuickActionButton({
@@ -20,12 +21,15 @@ export default function QuickActionButton({
   variant = 'gray',
   badge,
   className = '',
-  isQuizPage = false
+  isQuizPage = false,
+  disabled = false
 }: QuickActionButtonProps) {
   const executeWithDelay = useDelayedAction(200);
 
   const handleClick = () => {
-    executeWithDelay(onClick);
+    if (!disabled) {
+      executeWithDelay(onClick);
+    }
   };
   const getVariantClasses = () => {
     const suffix = isQuizPage && variant === 'green' ? '-quiz' : '';
@@ -68,11 +72,12 @@ export default function QuickActionButton({
 
   return (
     <>
-      <div className={`action-button-3d tap-highlight-transparent ${className}`}>
+      <div className={`action-button-3d tap-highlight-transparent ${disabled ? 'opacity-50 pointer-events-none' : ''} ${className}`}>
         <span className="shadow"></span>
         <span className={`edge ${variantClasses.edge}`}></span>
         <button
           onClick={handleClick}
+          disabled={disabled}
           className={`front ${variantClasses.front} flex flex-col items-center justify-center p-3 rounded-xl transition-all duration-300`}
         >
           <div className="relative">

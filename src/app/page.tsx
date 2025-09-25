@@ -9,11 +9,13 @@ import QuickActionButton from '@/components/button/QuickActionButton';
 import GameSection from '@/components/layout/GameSection';
 import GameModeModal from '@/components/common/GameModeModal';
 import { useDelayedAction } from '@/hooks/useDelayedAction';
+import { useRouter } from 'next/navigation';
 import type { Game } from '@/components/layout/GameSection';
 
 export default function HomePage() {
   const [isGameModeModalOpen, setIsGameModeModalOpen] = useState(false);
   const executeWithDelay = useDelayedAction(200);
+  const router = useRouter();
 
   const profileData = {
     name: 'علی احمدی',
@@ -215,7 +217,7 @@ export default function HomePage() {
   const handleChatsClick = () => {
     console.log('Chats clicked');
     executeWithDelay(() => {
-      // اینجا می‌توانید به صفحه چت‌ها هدایت کنید
+      router.push('/chats');
     });
   };
 
