@@ -203,7 +203,7 @@ export default function HomePage() {
   const handleProfileClick = () => {
     console.log('Profile clicked');
     executeWithDelay(() => {
-      // اینجا می‌توانید به صفحه پروفایل هدایت کنید
+      router.push('/profile');
     });
   };
 
@@ -231,7 +231,7 @@ export default function HomePage() {
   const handleQuestionFactoryClick = () => {
     console.log('Question Factory clicked');
     executeWithDelay(() => {
-      // اینجا می‌توانید به صفحه کارخانه سوال هدایت کنید
+      router.push('/question-factory');
     });
   };
 
