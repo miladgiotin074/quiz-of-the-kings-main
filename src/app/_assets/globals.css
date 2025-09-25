@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Prevent zoom and scaling */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
 /* Global styles for better mobile UX */
 body {
   -webkit-user-select: none;
@@ -10,6 +17,7 @@ body {
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* Disable right-click context menu */

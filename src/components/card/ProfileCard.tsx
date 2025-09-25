@@ -61,7 +61,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({
             <p className="text-sm text-brand-subtext mb-1">{username}</p>
             <p className="text-brand-subtext flex items-center text-base">
               <ShieldCheckIcon className="h-5 w-5 ml-2 text-yellow-400" />
-              سطح {level} - {title}
+              سطح {level.toLocaleString('fa-IR')} - {title}
             </p>
           </div>
         </div>

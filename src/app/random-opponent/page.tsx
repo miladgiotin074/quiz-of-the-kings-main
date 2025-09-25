@@ -98,11 +98,11 @@ export default function RandomOpponentPage() {
           <div className="text-center mb-8">
             <div className="flex justify-center space-x-8 space-x-reverse text-sm text-brand-subtext">
               <div className="flex flex-col items-center">
-                <span className="text-brand-accent font-bold text-lg">1,247</span>
+                <span className="text-brand-accent font-bold text-lg">{(1247).toLocaleString('fa-IR')}</span>
                 <span>بازیکن آنلاین</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="text-brand-accent font-bold text-lg">~30s</span>
+                <span className="text-brand-accent font-bold text-lg">~{(30).toLocaleString('fa-IR')}s</span>
                 <span>زمان متوسط جستجو</span>
               </div>
             </div>

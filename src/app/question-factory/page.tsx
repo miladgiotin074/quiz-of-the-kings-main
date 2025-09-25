@@ -183,13 +183,13 @@ export default function QuestionFactoryPage() {
                   {options.map((option, index) => (
                     <div key={index} className="flex items-center gap-3">
                       <div className="flex items-center justify-center w-8 h-8 bg-brand-accent rounded-full text-sm font-bold">
-                        {index + 1}
+                        {(index + 1).toLocaleString('fa-IR')}
                       </div>
                       <input
                         type="text"
                         value={option}
                         onChange={(e) => handleOptionChange(index, e.target.value)}
-                        placeholder={`گزینه ${index + 1}`}
+                        placeholder={`گزینه ${(index + 1).toLocaleString('fa-IR')}`}
                         className="flex-1 p-3 bg-brand-secondary border border-gray-600 rounded-lg text-brand-text placeholder-brand-subtext"
                       />
                       <input
@@ -259,7 +259,7 @@ export default function QuestionFactoryPage() {
                           }`}
                         >
                           <div className="flex items-center justify-center w-6 h-6 bg-brand-accent rounded-full text-xs font-bold">
-                            {index + 1}
+                            {(index + 1).toLocaleString('fa-IR')}
                           </div>
                           <span className="text-sm">{option}</span>
                           {index === question.correctAnswer && (

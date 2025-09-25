@@ -103,7 +103,7 @@ export default function ChatsPage() {
 
   return (
     <Page>
-      <div className="flex flex-col min-h-screen bg-brand-dark text-brand-text" dir="rtl">
+      <div className="flex flex-col min-h-screen bg-brand-dark text-brand-text font-vazir-matn" dir="rtl">
         {/* Chat List */}
         <div className="flex-1 overflow-y-auto">
           {chats.map((chat) => (
@@ -141,7 +141,7 @@ export default function ChatsPage() {
                   
                   {chat.unreadCount > 0 && (
                     <div className="bg-brand-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 mr-2">
-                      {chat.unreadCount}
+                      {chat.unreadCount.toLocaleString('fa-IR')}
                     </div>
                   )}
                 </div>

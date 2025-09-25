@@ -231,7 +231,7 @@ export default function ProfilePage() {
             {/* سطح و عنوان */}
             <div className="flex items-center justify-center gap-2 mb-4">
               <span className="bg-brand-accent text-white px-3 py-1 rounded-full text-sm font-bold">
-                سطح {profileData.level}
+                سطح {profileData.level.toLocaleString('fa-IR')}
               </span>
               <span className="text-brand-subtext">{profileData.title}</span>
             </div>
@@ -242,15 +242,15 @@ export default function ProfilePage() {
             <h2 className="text-xl font-bold mb-4 text-center">آمار شما</h2>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-brand-accent">{profileData.stats.score}</div>
+                <div className="text-2xl font-bold text-brand-accent">{profileData.stats.score.toLocaleString('fa-IR')}</div>
                 <div className="text-brand-subtext text-sm">امتیاز</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-yellow-500">{profileData.stats.coins}</div>
+                <div className="text-2xl font-bold text-yellow-500">{profileData.stats.coins.toLocaleString('fa-IR')}</div>
                 <div className="text-brand-subtext text-sm">سکه</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-500">{profileData.stats.games}</div>
+                <div className="text-2xl font-bold text-green-500">{profileData.stats.games.toLocaleString('fa-IR')}</div>
                 <div className="text-brand-subtext text-sm">بازی</div>
               </div>
             </div>

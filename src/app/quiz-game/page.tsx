@@ -200,11 +200,11 @@ export default function QuizGamePage() {
               <div className="flex items-center space-x-4 space-x-reverse">
                 <div className="flex items-center gap-2">
                 <div className="text-xs text-brand-subtext font-medium">شما</div>
-                  <div className="text-2xl font-bold text-brand-base">{playerScore}</div>
+                  <div className="text-2xl font-bold text-brand-base">{playerScore.toLocaleString('fa-IR')}</div>
                 </div>
                 <div className="text-lg text-brand-base font-bold mx-4">-</div>
                 <div className="flex items-center gap-2">
-                  <div className="text-2xl font-bold">{opponentScore}</div>
+                  <div className="text-2xl font-bold">{opponentScore.toLocaleString('fa-IR')}</div>
                   <div className="text-xs text-brand-subtext font-medium">حریف</div>
                 </div>
               </div>

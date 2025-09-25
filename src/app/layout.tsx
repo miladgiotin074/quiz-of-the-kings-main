@@ -10,6 +10,14 @@ import './_assets/globals.css';
 export const metadata: Metadata = {
   title: 'Quiz Of The Kings',
   description: 'A Telegram web app for engaging in intelligence and general knowledge competitions',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+    minimumScale: 1,
+    userScalable: false,
+    viewportFit: 'cover',
+  },
 };
 
 export default async function RootLayout({ children }: PropsWithChildren) {

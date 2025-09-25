@@ -146,13 +146,13 @@ export default function GameRoomPage() {
                 <div className="text-center">
                   <div className="flex items-center gap-2">
                     <span className='text-base text-brand-text'>شما</span>
-                    <span className="text-2xl font-bold text-brand-base">{user.score}</span>  
+                    <span className="text-2xl font-bold text-brand-base">{user.score.toLocaleString('fa-IR')}</span>  
                   </div>
                 </div>
                 <div className="text-brand-accent text-xl font-bold mx-2">-</div>
                 <div className="text-center">
                 <div className="flex items-center gap-2">
-                    <span className="text-2xl font-bold text-brand-base">{opponent.score}</span> 
+                    <span className="text-2xl font-bold text-brand-base">{opponent.score.toLocaleString('fa-IR')}</span> 
                     <span className='text-base text-brand-text'>حریف</span>   
                   </div>
 

@@ -224,7 +224,7 @@ export default function HomePage() {
   const handleCoinMarketClick = () => {
     console.log('Coin Market clicked');
     executeWithDelay(() => {
-      // اینجا می‌توانید به صفحه سکه بازار هدایت کنید
+      router.push('/coin-market');
     });
   };
 
