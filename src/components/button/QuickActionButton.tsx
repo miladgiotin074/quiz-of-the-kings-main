@@ -10,6 +10,7 @@ interface QuickActionButtonProps {
   variant?: 'gray' | 'blue' | 'yellow' | 'green' | 'red' | 'purple';
   badge?: number;
   className?: string;
+  isQuizPage?: boolean; // پراپ جدید برای تشخیص صفحه quiz-game
 }
 
 export default function QuickActionButton({
@@ -18,7 +19,8 @@ export default function QuickActionButton({
   label,
   variant = 'gray',
   badge,
-  className = ''
+  className = '',
+  isQuizPage = false
 }: QuickActionButtonProps) {
   const executeWithDelay = useDelayedAction(200);
 
@@ -26,6 +28,8 @@ export default function QuickActionButton({
     executeWithDelay(onClick);
   };
   const getVariantClasses = () => {
+    const suffix = isQuizPage && variant === 'green' ? '-quiz' : '';
+    
     switch (variant) {
       case 'blue':
         return {
@@ -39,8 +43,8 @@ export default function QuickActionButton({
         };
       case 'green':
         return {
-          edge: 'edge-green',
-          front: 'front-green'
+          edge: `edge-green${suffix}`,
+          front: `front-green${suffix}`
         };
       case 'red':
         return {
@@ -73,7 +77,11 @@ export default function QuickActionButton({
         >
           <div className="relative">
             {React.cloneElement(icon as React.ReactElement, {
-              className: `h-6 w-6 mb-1 ${variant === 'gray' ? 'text-brand-accent' : 'text-white'}`
+              className: `h-6 w-6 mb-1 ${
+                variant === 'green' && isQuizPage ? 'text-brand-accent' : 
+                variant === 'gray' ? 'text-brand-accent' : 
+                'text-white'
+              }`
             })}
             {badge && badge > 0 && (
               <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-lg">
@@ -81,7 +89,7 @@ export default function QuickActionButton({
               </div>
             )}
           </div>
-          <span className="text-white font-semibold text-sm">{label}</span>
+          <span className="font-semibold text-sm text-white">{label}</span>
         </button>
       </div>
 
